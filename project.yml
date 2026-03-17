@@ -1,0 +1,43 @@
+name: OfflineAgent
+options:
+  bundleIdPrefix: com.offlineagent
+  deploymentTarget:
+    iOS: "15.0"
+  xcodeVersion: "15.0"
+configs:
+  Debug: debug
+  Release: release
+
+targets:
+  OfflineAgentApp:
+    type: application
+    platform: iOS
+    deploymentTarget: "15.0"
+    sources:
+      - path: OfflineAgentApp
+    info:
+      path: OfflineAgentApp/Info.plist
+      properties:
+        CFBundleDisplayName: OfflineAgent
+        UILaunchScreen:
+          UILaunchScreen: {}
+        UIUserInterfaceStyle: Automatic
+        NSMicrophoneUsageDescription: "用于语音输入（本地离线处理，不上传）。"
+        NSCameraUsageDescription: "用于修图拍照（仅保存到本地沙盒，不上传）。"
+        NSPhotoLibraryUsageDescription: "用于修图/文字增强选择照片（仅访问本地沙盒，不上传）。"
+        NSPhotoLibraryAddUsageDescription: "用于保存修图/增强结果到相册（本地处理，不上传）。"
+        UIApplicationSupportsIndirectInputEvents: true
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.offlineagent.OfflineAgent
+        SWIFT_VERSION: "5.0"
+        CURRENT_PROJECT_VERSION: 1
+        MARKETING_VERSION: 0.1.0
+        ENABLE_USER_SCRIPT_SANDBOXING: true
+        DEAD_CODE_STRIPPING: true
+    dependencies:
+      - package: OfflineAgentCore
+
+packages:
+  OfflineAgentCore:
+    path: Packages/OfflineAgentCore
